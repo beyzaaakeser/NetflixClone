@@ -13,8 +13,7 @@ const ListItem = ({ index }) => {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1Y2M4ODVlZTJjMzRhOGE0YmUxMWY3OTAwNmQ2MzA5OSIsIm5iZiI6MTcxNjQwMTYzMS4yNzUsInN1YiI6IjY2NGUzNWRmNWQ5NTBlNmQxMTE4OTc1OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.V4IpOtdSLrfyeyr1HuzXkOKUIRldSCkP39jcwQTs5B8',
+      Authorization: import.meta.env.FETCH_AUTH,
     },
   };
 
@@ -26,7 +25,7 @@ const ListItem = ({ index }) => {
           options
         );
         const data = await response.json();
-        setMovies(data.results);
+        setMovies(shuffleArray(data.results)); // Filmleri karıştırıyoruz.
       } catch (err) {
         console.error('Error fetching movies:', err);
       }
@@ -52,6 +51,13 @@ const ListItem = ({ index }) => {
 
     fetchData();
   }, []);
+
+  const shuffleArray = (array) => {
+    return array
+      .map((item) => ({ item, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ item }) => item);
+  };
 
   const getMovieGenres = (genreIds) => {
     return genreIds
