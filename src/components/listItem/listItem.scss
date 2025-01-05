@@ -7,6 +7,7 @@
   overflow: hidden;
   cursor: pointer;
   color: white;
+  margin: 15px 5px;
   img {
     width: 100%;
     height: 100%;
@@ -52,7 +53,7 @@
         }
       }
 
-      .itemInfoTop{
+      .itemInfoTop {
         display: flex;
         align-items: center;
         margin-bottom: 10px;
@@ -60,19 +61,26 @@
         font-weight: 600;
         color: gray;
 
-        .limit{
+        .limit {
           border: 1px solid gray;
           padding: 1px 3px;
           margin: 0 10px;
         }
       }
 
-      .desc{
+      .desc {
         font-size: 13px;
         margin-bottom: 10px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.5;
+        max-height: calc(1.5em * 2);
       }
 
-      .genre{
+      .genre {
         font-size: 14px;
         color: lightgray;
       }

@@ -35,19 +35,20 @@ const Featured = ({ type }) => {
             value={selectedOption}
             onChange={handleChange}
             placeholder="Select Genre"
-            classNamePrefix='custom-select'
+            classNamePrefix="custom-select"
           />
         </div>
       )}
       <img src="/hero.jpg" alt="" width="100%" />
       <div className="info">
-        <img src="" alt="" />
+        <img src="/public/squid-game.jpg" alt="" />
 
         <span className="desc">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam
-          asperiores odio nam doloremque iusto aspernatur cupiditate, autem,
-          exercitationem sit reprehenderit quidem tempore qui sed praesentium
-          porro eaque minus debitis. Repudiandae.
+          The series tells the story of hundreds of people in debt who play
+          dangerous children's games to win a large cash prize. However, the
+          games are deadly and only one winner can survive. It is a moving
+          portrayal of society's injustice, harsh criticism of capitalism and
+          people's survival instincts.
         </span>
 
         <div className="buttons">

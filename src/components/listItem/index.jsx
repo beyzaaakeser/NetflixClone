@@ -1,12 +1,65 @@
 import { IoIosPlay, IoMdAdd } from 'react-icons/io';
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
 import './listItem.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ListItem = ({ index }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const trailer =
-    'https://www.google.com/search?sca_esv=01db24c8ddd18a27&sxsrf=ADLYWIKlwWS88TcQkIfL1GDBuUEaMc4Qcg:1734952277298&q=netflix+video&udm=7&fbs=AEQNm0CgMcZ11KbHg1uunEmuo39LHFJ72fKm3eDKnwE-p1_lrFS99GR8hClY8GX-nkIXU_srG4RfQQO8i2e4DkR4zLpRTEgjNqFd1YHzPHFjB6tpV4Sy0iTPPUhInNZ-4qhnxNc1hqv35ytYresK5dwTbquZkUFCcFjLvqSGvyhmAYYu2K8m5RUcuFNyYlLPGTL5ocYvyy_X4MnEjQoqMUBbnx-Ba6c7YQ&sa=X&ved=2ahUKEwiP7sLx4L2KAxWTyAIHHYkdJjcQtKgLegQIGBAB&biw=638&bih=944&dpr=1#fpstate=ive&vld=cid:a84f994a,vid:nbrfJAAS7Qc,st:0';
+  const [movies, setMovies] = useState([]);
+  const [genres, setGenres] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1Y2M4ODVlZTJjMzRhOGE0YmUxMWY3OTAwNmQ2MzA5OSIsIm5iZiI6MTcxNjQwMTYzMS4yNzUsInN1YiI6IjY2NGUzNWRmNWQ5NTBlNmQxMTE4OTc1OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.V4IpOtdSLrfyeyr1HuzXkOKUIRldSCkP39jcwQTs5B8',
+    },
+  };
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const response = await fetch(
+          'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1',
+          options
+        );
+        const data = await response.json();
+        setMovies(data.results);
+      } catch (err) {
+        console.error('Error fetching movies:', err);
+      }
+    };
+
+    const fetchGenres = async () => {
+      try {
+        const response = await fetch(
+          'https://api.themoviedb.org/3/genre/movie/list?language=en',
+          options
+        );
+        const data = await response.json();
+        setGenres(data.genres);
+      } catch (err) {
+        console.error('Error fetching genres:', err);
+      }
+    };
+
+    const fetchData = async () => {
+      await Promise.all([fetchMovies(), fetchGenres()]);
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
+
+  const getMovieGenres = (genreIds) => {
+    return genreIds
+      .map((id) => genres.find((genre) => genre.id === id)?.name)
+      .filter(Boolean)
+      .join(', ');
+  };
+
   return (
     <div
       className="listItem"
@@ -14,29 +67,42 @@ const ListItem = ({ index }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <img src="/netflix.png" alt="" />
+      {!isHovered && (
+        <img
+          src={
+            'https://image.tmdb.org/t/p/original' + movies[index]?.poster_path
+          }
+          alt=""
+        />
+      )}
+
       {isHovered && (
         <>
-          <video src={trailer} autoPlay={true} loop></video>
+          <img
+            src={
+              'https://image.tmdb.org/t/p/original' +
+              movies[index]?.backdrop_path
+            }
+            alt=""
+          />
           <div className="itemInfo">
             <div className="icons">
-              <IoIosPlay className='icon' />
-              <IoMdAdd  className='icon' />
-              <AiOutlineLike className='icon'  />
-              <AiOutlineDislike className='icon'  />
+              <IoIosPlay className="icon" />
+              <IoMdAdd className="icon" />
+              <AiOutlineLike className="icon" />
+              <AiOutlineDislike className="icon" />
             </div>
             <div className="itemInfoTop">
               <span>1 hour 14mins</span>
               <span className="limit">+16</span>
               <span>1999</span>
             </div>
-
-            <div className="desc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
-              voluptatum facilis id, ipsum corrupti esse voluptatem accusantium
-              ?
+            <div className="desc">{movies[index]?.overview}</div>
+            <div className="genre">
+              {loading
+                ? 'Loading...'
+                : getMovieGenres(movies[index]?.genre_ids || [])}
             </div>
-            <div className="genre">Action</div>
           </div>
         </>
       )}
