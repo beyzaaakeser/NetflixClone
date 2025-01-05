@@ -1,6 +1,8 @@
 import './login.scss';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
   const handleFinish = () => {
     navigate('/home');
   };
