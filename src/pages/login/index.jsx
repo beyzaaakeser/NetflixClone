@@ -1,6 +1,9 @@
 import './login.scss';
 
 const Login = () => {
+  const handleFinish = () => {
+    navigate('/home');
+  };
   return (
     <div className="login">
       <div className="top">
@@ -14,7 +17,9 @@ const Login = () => {
           <h1>Sign In</h1>
           <input type="email" placeholder="Email or phone number" />
           <input type="password" placeholder="Password" />
-          <button className="loginButton">Sign In</button>
+          <button className="loginButton" onClick={handleFinish}>
+            Sign In
+          </button>
           <span>
             New to Netflix? <b>Sign up now.</b>
           </span>

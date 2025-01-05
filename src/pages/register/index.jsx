@@ -1,9 +1,11 @@
 import { useRef, useState } from 'react';
 import './register.scss';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -13,6 +15,7 @@ const Register = () => {
   };
   const handleFinish = () => {
     setPassword(passwordRef.current.value);
+    navigate('/login');
   };
   return (
     <div className="register">

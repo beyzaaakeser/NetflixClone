@@ -8,6 +8,7 @@ const ListItem = ({ index }) => {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
   const [loading, setLoading] = useState(true);
+  console.log(movies);
 
   const options = {
     method: 'GET',
@@ -101,7 +102,7 @@ const ListItem = ({ index }) => {
             <div className="itemInfoTop">
               <span>1 hour 14mins</span>
               <span className="limit">+16</span>
-              <span>1999</span>
+              <span>{movies[index]?.release_date.split('-')[0]}</span>
             </div>
             <div className="desc">{movies[index]?.overview}</div>
             <div className="genre">

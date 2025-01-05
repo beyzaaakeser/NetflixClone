@@ -1,0 +1,56 @@
+footer {
+  background-color: #0B0B0B;
+  height: 50vh;
+  cursor: pointer;
+  margin-top: 50px;
+
+  .footer-container {
+    color: white;
+    max-width: 70vw;
+    margin: auto;
+
+    .questions {
+      padding: 50px 0 10px 0;
+      font-size: 18px;
+      color: var(--footer-color);
+      span {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+
+    .footer {
+      display: flex;
+      color: white;
+      justify-content: space-between;
+      .footer-item {
+        display: flex;
+        flex-direction: column;
+        a {
+          color: #b3b3b3;
+          margin-top: 10px;
+          font-size: 15px;
+        }
+      }
+    }
+
+    .footer-select {
+      background-color:black;
+      color: white;
+      padding: 7px 15px;
+      border-radius: 5px;
+      border: 1px solid white;
+      cursor: pointer;
+      margin-top: 30px;
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    .footer-end {
+      padding: 20px 0 10px 0;
+      font-size: 15px;
+      color: var(--footer-color);
+      margin:20px 0 60px 0;
+    }
+  }
+}
