@@ -23,9 +23,11 @@
         height: 60px;
         margin-right: 40px;
       }
-      span {
-        margin-right: 20px;
-        cursor: pointer;
+      .menu {
+        span {
+          margin-right: 20px;
+          cursor: pointer;
+        }
       }
     }
 
@@ -65,6 +67,14 @@
           }
         }
       }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    .menu {
+      display: none;
     }
   }
 }

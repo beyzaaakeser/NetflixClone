@@ -8,13 +8,13 @@ const ListItem = ({ index }) => {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(movies);
+  /* console.log(movies); */
 
   const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: import.meta.env.FETCH_AUTH,
+      Authorization: `Bearer ${import.meta.env.VITE_FETCH_AUTH}`,
     },
   };
 
@@ -26,7 +26,7 @@ const ListItem = ({ index }) => {
           options
         );
         const data = await response.json();
-        setMovies(shuffleArray(data.results)); // Filmleri karıştırıyoruz.
+        setMovies(shuffleArray(data.results));
       } catch (err) {
         console.error('Error fetching movies:', err);
       }

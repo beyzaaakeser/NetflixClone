@@ -1,6 +1,5 @@
 footer {
-  background-color: #0B0B0B;
-  height: 50vh;
+  background-color: #0b0b0b;
   cursor: pointer;
   margin-top: 50px;
 
@@ -23,6 +22,8 @@ footer {
       display: flex;
       color: white;
       justify-content: space-between;
+      flex-wrap: wrap; // Ekleme: Elemanları satırlara sarmak için
+
       .footer-item {
         display: flex;
         flex-direction: column;
@@ -35,7 +36,7 @@ footer {
     }
 
     .footer-select {
-      background-color:black;
+      background-color: black;
       color: white;
       padding: 7px 15px;
       border-radius: 5px;
@@ -50,7 +51,19 @@ footer {
       padding: 20px 0 10px 0;
       font-size: 15px;
       color: var(--footer-color);
-      margin:20px 0 60px 0;
+      margin: 20px 0 60px 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 20px;
+    }
+
+    .footer-item {
+      margin-bottom: 20px;
     }
   }
 }

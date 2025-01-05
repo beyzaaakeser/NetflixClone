@@ -90,3 +90,14 @@
     }
   }
 }
+
+@media (max-width: 640px) {
+  /* sm breakpoint */
+  .featured .info {
+    width: 80%;
+
+    .info-img{
+      width: 80%;
+    }
+  }
+}

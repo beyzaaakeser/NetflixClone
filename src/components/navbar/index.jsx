@@ -10,18 +10,18 @@ const Navbar = () => {
     return () => (window.onscroll = null);
   };
 
-  console.log(isScrolled);
-
   return (
     <div className={isScrolled ? 'navbar scrolled' : 'navbar'}>
       <div className="container">
         <div className="left">
           <img src="/logo1.png" alt="Netflix Logo" />
-          <span>HomePage</span>
-          <span>Series</span>
-          <span>Movies</span>
-          <span>New and Popular</span>
-          <span>MyList</span>
+          <div className="menu">
+            <span>HomePage</span>
+            <span>Series</span>
+            <span>Movies</span>
+            <span>New and Popular</span>
+            <span>MyList</span>
+          </div>
         </div>
         <div className="right">
           <FiSearch className="icon" />

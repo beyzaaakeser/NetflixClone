@@ -41,7 +41,7 @@ const Featured = ({ type }) => {
       )}
       <img src="/hero.jpg" alt="" width="100%" />
       <div className="info">
-        <img src="/public/squid-game.jpg" alt="" />
+        <img src="/public/squid-game.jpg" className="info-img" />
 
         <span className="desc">
           The series tells the story of hundreds of people in debt who play
